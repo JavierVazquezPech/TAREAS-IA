@@ -1,0 +1,29 @@
+# Default KB from the lecture. Edit this file, then rerun the programs.
+#
+# Variables start with a lowercase letter: x, y, z
+# Constants start with an uppercase letter: Tom, Felix, West
+
+facts:
+  - Estudiante(Ana)
+  - Estudiante(Luis)
+  - Profesor(Marta)
+  - TieneCredencial(Ana)
+  - TieneCredencial(Marta)
+  - HorarioNocturno(Hoy)
+  - TieneCredencial(Luis)
+
+rules:
+  - id: R_miembro_est
+    if: [Estudiante(x), TieneCredencial(x)]
+    then: Miembro(x)
+  - id: R_miembro_prof
+    if: [Profesor(x)]
+    then: Miembro(x)
+  - id: R_acceso
+    if: [Miembro(x), HorarioNocturno(Hoy)]
+    then: AccesoNoche(x)
+  - id: R_beca
+    if: [Estudiante(x), TieneCredencial(x)]
+    then: Becario(x)
+
+query: AccesoNoche(Luis)
